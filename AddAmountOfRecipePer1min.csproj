@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <AssemblyName>AddAmountOfRecipePer1min-mod</AssemblyName>
+    <AssemblyName>AddAmountOfRecipePer1minContinued</AssemblyName>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
