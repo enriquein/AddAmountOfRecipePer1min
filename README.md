@@ -14,6 +14,12 @@ and credit goes to `wokdok` for making this awesome mod that I can't play withou
 
 ## ChangeLog
 
+### 1.2.3
+* Added support for the Plane Smelter in tooltips. Hold any of left: `ctrl`, `shift`, or `alt` to display Plane Smelter speeds.
+    * Does not require to have unlocked Plane Smelter in the tech tree for it to work.
+    * There's a known issue with the display of the Organic Crystal and Crystal Silicon recipes, where the second recipe always shows in Plane Smelter speed.
+      Use the keyboard modifiers to display regular Smelter speeds until I can figure out why this is.
+
 ### 1.2.2
 * maximum default assembler speed is now limited to mk2 even if mk3 is unlocked (to keep it nice at 100% speed by default, if mk2 unlocked).
 * add ability to switch the displayed speed on the fly by holding left `ctrl`, `shift` or `alt` while hovering over the item:

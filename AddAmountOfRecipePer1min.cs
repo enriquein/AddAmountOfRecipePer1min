@@ -190,6 +190,19 @@ namespace AddAmountOfRecipePer1min
 					buildSpeed = 1.5;
 					uiRecipeEntry.timeText.text = "1min\r\n(mk3)";
 				}
+			} else if (recipeProto.Type == ERecipeType.Smelt)
+			{
+				uiRecipeEntry.timeText.rectTransform.sizeDelta = new Vector2(uiRecipeEntry.timeText.rectTransform.sizeDelta.x, uiRecipeEntry.timeText.rectTransform.sizeDelta.y + 25);
+
+				if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftAlt)) {
+					buildSpeed = 2;
+					uiRecipeEntry.timeText.text = "1min\r\n(mk2)";
+				}
+				else
+				{
+					buildSpeed = 1;
+					uiRecipeEntry.timeText.text = "1min\r\n(mk1)";
+				}
 			}
 
 			while (num3 < recipeProto.Results.Length && num < 7)
