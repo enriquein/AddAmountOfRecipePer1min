@@ -171,8 +171,30 @@ namespace AddAmountOfRecipePer1min
                 uiRecipeEntry.timeText.rectTransform.sizeDelta = new Vector2(uiRecipeEntry.timeText.rectTransform.sizeDelta.x, uiRecipeEntry.timeText.rectTransform.sizeDelta.y + 25);
 
                 // Set defaults based on config values
-                buildSpeed = MainPlugin.ValidSpeedsForAssembler[MainPlugin.DefaultAssemblerSpeed.Value];
-                uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.DefaultAssemblerSpeed.Value})";
+                if (MainPlugin.LimitDefaultAssemblerSpeedToLatestUnlocked.Value)
+                {
+                    var defaultSpeed = MainPlugin.DefaultAssemblerSpeed.Value;
+                    var fastestUnlocked =
+                        GameMain.data.history.TechUnlocked(1203)
+                            ? MainPlugin.MK3
+                            : GameMain.data.history.TechUnlocked(1202)
+                                ? MainPlugin.MK2
+                                : MainPlugin.MK1;
+
+                    if (defaultSpeed == MainPlugin.MK3 && fastestUnlocked != MainPlugin.MK3)
+                        defaultSpeed = MainPlugin.MK2;
+
+                    if (defaultSpeed == MainPlugin.MK2 && fastestUnlocked != MainPlugin.MK2 && fastestUnlocked != MainPlugin.MK3)
+                        defaultSpeed = MainPlugin.MK1;
+
+                    buildSpeed = MainPlugin.ValidSpeedsForAssembler[defaultSpeed];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({defaultSpeed})";
+                }
+                else
+                {
+                    buildSpeed = MainPlugin.ValidSpeedsForAssembler[MainPlugin.DefaultAssemblerSpeed.Value];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.DefaultAssemblerSpeed.Value})";
+                }
 
                 // Override value if any of the following keys are being held while hovering.
                 if (Input.GetKey(KeyCode.LeftControl)) {
@@ -196,6 +218,26 @@ namespace AddAmountOfRecipePer1min
                 uiRecipeEntry.timeText.rectTransform.sizeDelta = new Vector2(uiRecipeEntry.timeText.rectTransform.sizeDelta.x, uiRecipeEntry.timeText.rectTransform.sizeDelta.y + 25);
 
                 // Use values from config
+                if (MainPlugin.LimitDefaultSmelterSpeedToLatestUnlocked.Value)
+                {
+                    var defaultSpeed = MainPlugin.DefaultSmelterSpeed.Value;
+                    var fastestUnlocked =
+                        GameMain.data.history.TechUnlocked(1417)
+                            ? MainPlugin.MK2
+                            : MainPlugin.MK1;
+
+                    if (defaultSpeed == MainPlugin.MK2 && fastestUnlocked != MainPlugin.MK2)
+                        defaultSpeed = MainPlugin.MK1;
+
+                    buildSpeed = MainPlugin.ValidSpeedsForSmelter[defaultSpeed];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({defaultSpeed})";
+                }
+                else
+                {
+                    buildSpeed = MainPlugin.ValidSpeedsForSmelter[MainPlugin.DefaultSmelterSpeed.Value];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.DefaultSmelterSpeed.Value})";
+                }
+
                 var nonDefaultSpeed = MainPlugin.DefaultSmelterSpeed.Value == MainPlugin.MK1
                     ? MainPlugin.MK2
                     : MainPlugin.MK1;
@@ -204,11 +246,6 @@ namespace AddAmountOfRecipePer1min
                 {
                     buildSpeed = MainPlugin.ValidSpeedsForSmelter[nonDefaultSpeed];
                     uiRecipeEntry.timeText.text = $"1min\r\n({nonDefaultSpeed})";
-                }
-                else
-                {
-                    buildSpeed = MainPlugin.ValidSpeedsForSmelter[MainPlugin.DefaultSmelterSpeed.Value];
-                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.DefaultSmelterSpeed.Value})";
                 }
             }
 
