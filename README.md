@@ -12,13 +12,36 @@ and credit goes to `wokdok` for making this awesome mod that I can't play withou
 
 ![sample](https://github.com/wokdok/AddAmountOfRecipePer1min/blob/master/sample.png?raw=true "sample")
 
+## Configuration
+
+This mod allows configuration of the default speeds for assemblers and smelters. It also allows you to specify which speeds to
+display if you hold certain keys while hovering over an item. To set the configuration values, please remember that you need to run the
+game once before the configuration file will be generated. Afterwards, you may use the r2modman configuration editor to change the values.
+The available configuration values are:
+
+- `Default_Assembler_Speed`: The default assembler speed to use for tooltips. Valid values are `mk1`, `mk2`, and `mk3`. The default is `mk2`.
+- `Default_Smelter_Speed`: The default smelter speed to use for tooltips. Valid values are `mk1` and `mk2`. The default is `mk1`.
+- `Limit_Default_Assembler_Speed_To_Latest_Unlocked`: When `true` it will limit the default speed to the maximum assembler speed unlocked. Useful if you want to display a specific
+  speed, but only if you have unlocked it. If `false` it will always use the default speed regardless of your unlocks.
+- `Limit_Default_Smelter_Speed_To_Latest_Unlocked`: When `true` it will limit the default speed to the maximum smelter speed unlocked. Useful if you want to display a specific
+  speed, but only if you have unlocked it. If `false` it will always use the default speed regardless of your unlocks.
+- `Speed_To_Show_On_Left_Ctrl`: Speed to show when pressing the left `Ctrl` key while hovering over an item. Valid values are `mk1`, `mk2`, and `mk3`.
+  Only applies to Assemblers, since Smelters will use the non-default speed on hover.
+- `Speed_To_Show_On_Left_Shift`: Speed to show when pressing the left `Shift` key while hovering over an item. Valid values are `mk1`, `mk2`, and `mk3`. Only applies to
+  Assemblers, since Smelters will use the non-default speed on hover.
+- `Speed_To_Show_On_Left_Alt`: Speed to show when pressing the left `Alt` key while hovering over an item. Valid values are `mk1`, `mk2`, and `mk3`. Only applies to Assemblers,
+  since Smelters will use the non-default speed on hover.
+
 ## ChangeLog
+
+### 1.2.4
+* Added the ability to configure the default speed, and also the speed to show when holding keys while hovering. Use r2modman's config editor to set the values.
+    * The default configuration values are the same that were being used in previous versions.
+      This means that if you liked the previous behavior then you don't need to change anything.
 
 ### 1.2.3
 * Added support for the Plane Smelter in tooltips. Hold any of left: `ctrl`, `shift`, or `alt` to display Plane Smelter speeds.
     * Does not require to have unlocked Plane Smelter in the tech tree for it to work.
-    * There's a known issue with the display of the Organic Crystal and Crystal Silicon recipes, where the second recipe always shows in Plane Smelter speed.
-      Use the keyboard modifiers to display regular Smelter speeds until I can figure out why this is.
 
 ### 1.2.2
 * maximum default assembler speed is now limited to mk2 even if mk3 is unlocked (to keep it nice at 100% speed by default, if mk2 unlocked).

@@ -1,6 +1,6 @@
 {
 	"name": "AddAmountOfRecipePer1minContinued",
-	"version_number": "1.2.3",
+	"version_number": "1.2.4",
 	"website_url": "https://github.com/enriquein/AddAmountOfRecipePer1min",
 	"description": "Add Another Amount of Recipe Per 1min in ItemTip GUI.",
 	"dependencies": []
