@@ -100,7 +100,7 @@ namespace AddAmountOfRecipePer1min
                         recipeEntryArr[j + DEFAULT_RECIPE_ENTRY_ARR_SIZE].gameObject.SetActive(false);
                         continue;
                     }
-                    setRecipe1Min(recipeEntryArr[j + DEFAULT_RECIPE_ENTRY_ARR_SIZE], list[j]);
+                    SetRecipe1Min(recipeEntryArr[j + DEFAULT_RECIPE_ENTRY_ARR_SIZE], list[j]);
                     recipeEntryArr[j + DEFAULT_RECIPE_ENTRY_ARR_SIZE].rectTrans.anchoredPosition = new Vector2((float)(recipeEntryArr[j].rectTrans.anchoredPosition.x + recipeMaxWidth), recipeEntryArr[j].rectTrans.anchoredPosition.y);
                     recipeEntryArr[j + DEFAULT_RECIPE_ENTRY_ARR_SIZE].gameObject.SetActive(true);
                 }
@@ -152,7 +152,7 @@ namespace AddAmountOfRecipePer1min
             }
         }
 
-        static void setRecipe1Min(UIRecipeEntry uiRecipeEntry, RecipeProto recipeProto)
+        static void SetRecipe1Min(UIRecipeEntry uiRecipeEntry, RecipeProto recipeProto)
         {
             int num = 0;
             int num2 = 0;
@@ -170,47 +170,45 @@ namespace AddAmountOfRecipePer1min
             {
                 uiRecipeEntry.timeText.rectTransform.sizeDelta = new Vector2(uiRecipeEntry.timeText.rectTransform.sizeDelta.x, uiRecipeEntry.timeText.rectTransform.sizeDelta.y + 25);
 
-                if (GameMain.data.history.TechUnlocked(1202))
-                {
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk2)";
-                }
-                else
-                {
-                    buildSpeed = 0.75;
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk1)";
+                // Set defaults based on config values
+                buildSpeed = MainPlugin.ValidSpeedsForAssembler[MainPlugin.DefaultAssemblerSpeed.Value];
+                uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.DefaultAssemblerSpeed.Value})";
+
+                // Override value if any of the following keys are being held while hovering.
+                if (Input.GetKey(KeyCode.LeftControl)) {
+                    buildSpeed = MainPlugin.ValidSpeedsForAssembler[MainPlugin.SpeedToShowOnLeftCtrl.Value];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.SpeedToShowOnLeftCtrl.Value})";
                 }
 
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    buildSpeed = 0.75;
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk1)";
-                }
-
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    buildSpeed = 1;
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk2)";
+                if (Input.GetKey(KeyCode.LeftShift)) {
+                    buildSpeed = MainPlugin.ValidSpeedsForAssembler[MainPlugin.SpeedToShowOnLeftShift.Value];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.SpeedToShowOnLeftShift.Value})";
                 }
 
                 if (Input.GetKey(KeyCode.LeftAlt))
                 {
-                    buildSpeed = 1.5;
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk3)";
+                    buildSpeed = MainPlugin.ValidSpeedsForAssembler[MainPlugin.SpeedToShowOnLeftAlt.Value];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.SpeedToShowOnLeftAlt.Value})";
                 }
             }
             else if (recipeProto.Type == ERecipeType.Smelt)
             {
                 uiRecipeEntry.timeText.rectTransform.sizeDelta = new Vector2(uiRecipeEntry.timeText.rectTransform.sizeDelta.x, uiRecipeEntry.timeText.rectTransform.sizeDelta.y + 25);
 
+                // Use values from config
+                var nonDefaultSpeed = MainPlugin.DefaultSmelterSpeed.Value == MainPlugin.MK1
+                    ? MainPlugin.MK2
+                    : MainPlugin.MK1;
+
                 if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.LeftAlt))
                 {
-                    buildSpeed = 2;
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk2)";
+                    buildSpeed = MainPlugin.ValidSpeedsForSmelter[nonDefaultSpeed];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({nonDefaultSpeed})";
                 }
                 else
                 {
-                    buildSpeed = 1;
-                    uiRecipeEntry.timeText.text = "1min\r\n(mk1)";
+                    buildSpeed = MainPlugin.ValidSpeedsForSmelter[MainPlugin.DefaultSmelterSpeed.Value];
+                    uiRecipeEntry.timeText.text = $"1min\r\n({MainPlugin.DefaultSmelterSpeed.Value})";
                 }
             }
 

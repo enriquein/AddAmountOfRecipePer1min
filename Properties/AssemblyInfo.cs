@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using AddAmountOfRecipePer1min;
 
 [assembly: AssemblyTitle("AddAmountOfRecipePer1min")]
 [assembly: AssemblyDescription("")]
@@ -14,4 +15,4 @@ using System.Runtime.InteropServices;
 
 [assembly: Guid("0e1d6dd0-6e33-462d-9342-fa66119d3c45")]
 
-[assembly: AssemblyVersion("1.2.3.0")]
+[assembly: AssemblyVersion(MainPlugin.ModVersion)]
