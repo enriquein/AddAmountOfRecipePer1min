@@ -34,6 +34,9 @@ The available configuration values are:
 
 ## ChangeLog
 
+### 1.3.0 (October 5, 2025)
+* No code changes, just updating dependencies to match the latest game version (0.10.33.26943). This fixes the popup errors you'd get when mouse-hovering over items.
+
 ### 1.2.4
 * Added the ability to configure the default speed, and also the speed to show when holding keys while hovering. Use r2modman's config editor to set the values.
     * The default configuration values are the same that were being used in previous versions.
