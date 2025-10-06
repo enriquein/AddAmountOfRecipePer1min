@@ -12,7 +12,7 @@ namespace AddAmountOfRecipePer1min
     {
         public const string ModGuid = "com.enriquein.plugins.addamountofrecipeper1min_continued";
         public const string ModName = "AddAmountOfRecipePer1min";
-        public const string ModVersion = "1.3.0";
+        public const string ModVersion = "1.3.1";
 
         public static string MK1 = "mk1";
         public static string MK2 = "mk2";

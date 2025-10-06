@@ -34,6 +34,9 @@ The available configuration values are:
 
 ## ChangeLog
 
+### 1.3.1 (October 6, 2025)
+* No code changes, fix my mistake where I included the wrong build of the mod in version 1.3.0. This version has the correct mod with the fix.
+
 ### 1.3.0 (October 5, 2025)
 * No code changes, just updating dependencies to match the latest game version (0.10.33.26943). This fixes the popup errors you'd get when mouse-hovering over items.
 
